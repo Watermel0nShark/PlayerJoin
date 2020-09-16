@@ -1,0 +1,6 @@
+# Player Join Config
+# ==================================
+# Plugin made by Watermelon
+# here you can put whatever message you want to send a player when they join!
+
+Message: "Put Join Message here!"
