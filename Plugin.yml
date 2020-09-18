@@ -1,4 +1,6 @@
+---
 name: PlayerJoin
+version: 0.0.1
 main: Watermelon\PlayerJoin\Main
 api: 3.15.1
-version: 0.0.1
+...
