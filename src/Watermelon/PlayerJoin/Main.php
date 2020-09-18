@@ -2,32 +2,27 @@
 
 namespace Watermelon\PlayerJoin;
 
-use pocketmine\Server;
-use pocketmine\Player;
-
 use pocketmine\plugin\PluginBase;
+use pocketmine\event\Listener;
+use pocketmine\event\player\PlayerJoinEvent;
+use pocketmine\Player;
+use pocketmine\Server;
+use pocketmine\utils\TextFormat as O;
 use pocketmine\utils\Config;
 
-use pocketmine\Listener;
-use pocketmine\event\player\PlayerJoinEvent;
+class Main extends PluginBase implements Listener{
 
-class main extends PluginBase implements Listener {
-   
-   public function onEnable(){
-      $this->getServer()->getPluginManager()->registerEvents($this, $this);
-      @Watermelon($this->getDataFoler());
-      $this->saveDefaultConfig();
-      $this->getResource("config.yml");
-   }
-    
-   public function onLoad {
-      $this->getLogger()->info ("plugin has loaded")
+  public function onEnable(){
+
+    @mkdir($this->getDataFolder());
+         $this->saveResource("config.yml");
+ $this->getServer()->getPluginManager()->registerEvents($this, $this);
 }
-   
-   public function onJoin(PlayerJoinEvent $event){
-      $player = $event->getPlayer();
-      
-      if($player instanceof Player)
-      $player->sendMessage($this->getConfig()->get("Message"));
-   }
+  public function onJoin(PlayerJoinEvent $event){
+
+    $player = $event->getPlayer();
+    $name = $event->getPlayer()->getName();
+
+    $player->sendMessage($this->getConfig()->get("join-message"));
+  }
 }
